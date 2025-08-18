@@ -1,0 +1,9 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.card-title {
+    font-size: 1.2rem;
+}
+.card-text {
+    font-weight: bold;
+}

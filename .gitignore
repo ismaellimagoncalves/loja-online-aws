@@ -1,0 +1,41 @@
+# ---------------------------
+# Terraform
+# ---------------------------
+terraform/terraform.tfvars       # Credenciais sensíveis
+terraform/.terraform/           # Pasta de estado local do Terraform
+terraform/terraform.tfstate*    # Arquivos de estado (tfstate e backups)
+terraform/.terraform.lock.hcl   # Lock file do Terraform
+
+# ---------------------------
+# Python
+# ---------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.env                            # Arquivo de variáveis de ambiente
+
+# ---------------------------
+# Docker
+# ---------------------------
+*.log
+*.env
+docker-compose.override.yml     # Caso use docker-compose
+docker-compose.override.env
+
+# ---------------------------
+# IDEs e sistemas
+# ---------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# GitHub Actions
+# ---------------------------
+.github/workflows/secrets.env    # Caso você use algum arquivo local para secrets (não recomendado)
+.terraform/
+*.tfstate
+*.tfstate.*
