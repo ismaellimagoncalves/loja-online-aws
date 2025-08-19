@@ -1,6 +1,7 @@
 provider "aws" {
   region = var.aws_region
 }
+
 # Security Group liberando SSH e HTTP
 resource "aws_security_group" "loja_sg" {
   name        = "loja-sg"
@@ -28,9 +29,10 @@ resource "aws_security_group" "loja_sg" {
   }
 }
 
-# Instância EC2
+# Instância EC2 Ubuntu pronta para docker
+
 resource "aws_instance" "loja_ec2" {
-  ami           = "ami-020cba7c55df1f615" # Ubuntu 24.04 LTS (verifique região)
+  ami           = "ami-020cba7c55df1f615" # Ubuntu 24.04 LTS (verifique se existe na sua região)
   instance_type = "t2.micro"
   key_name      = var.ec2_key_name
   security_groups = [aws_security_group.loja_sg.name]
@@ -39,10 +41,9 @@ resource "aws_instance" "loja_ec2" {
               #!/bin/bash
               apt-get update -y
               apt-get install -y docker.io
+              systemctl enable docker
               systemctl start docker
-              docker login -u ${var.dockerhub_user} -p ${var.dockerhub_password}
-              docker pull ${var.dockerhub_user}/${var.dockerhub_image}:v2
-              docker run -d -p 80:5000 --name loja ${var.dockerhub_user}/${var.dockerhub_image}:v2
+              usermod -aG docker ubuntu
               EOF
 
   tags = {
