@@ -19,8 +19,8 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2 .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
+          sudo docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2 .
+          sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
 
   deploy:
     runs-on: ubuntu-latest
