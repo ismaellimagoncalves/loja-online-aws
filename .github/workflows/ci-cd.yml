@@ -33,8 +33,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker stop loja || true
-            docker rm loja || true
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
-            docker run -d -p 80:5000 --name loja ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
-#flow
+            sudo docker stop loja || true
+            sudo docker rm loja || true
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
+            sudo docker run -d -p 80:5000 --name loja ${{ secrets.DOCKERHUB_USERNAME }}/loja-online:v2
